@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class ConnectionDelegate {
-	public static String MYBATISCONTENT="/net/zx/core/db/mybatis-config.xml";
+	public static String MYBATISCONTENT="/WEB-INF/mybatis-config.xml";
 	public static HashMap<String,SqlSessionFactory> sessionFactoryMap=new HashMap<String,SqlSessionFactory>();
 	
 	public ConnectionDelegate(){
@@ -21,32 +21,38 @@ public class ConnectionDelegate {
 	}
 	 
 	
-	public Connection getConnection(String extDataSource){
-		Log.log("11111111111111");
+	public SqlSession getSqlSession(String extDataSource){
 		synchronized(DataBase.class){
 			if(sessionFactoryMap.get(extDataSource)==null){
 				sessionFactoryMap.put(extDataSource,getSessionFactory());
 			}
 		}
-		System.out.println("9999999999");
-		return (Connection) sessionFactoryMap.get(extDataSource).openSession();
+		return sessionFactoryMap.get(extDataSource).openSession();
 	}
 	
 
 	
 	public SqlSessionFactory getSessionFactory(){
-		//System.out.println("88888888888888"+request.getSession().getServletContext().getRealPath("/"));
 		Reader reader = null;
+		SqlSessionFactory factory =null;
 		try {
 			reader = Resources.getResourceAsReader(MYBATISCONTENT);
-		} catch (IOException e) {
-			e.printStackTrace();
+			factory = new SqlSessionFactoryBuilder().build(reader);
+			//SqlSessionFactory factory = sqlSessionFactoryBuilder.build(reader, environment);
+			//SqlSessionFactory factory = sqlSessionFactoryBuilder.build(reader, environment,properties);
+			
+		} catch (Exception e) {
+			Log.error(e.getMessage());
 		}
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
-		//SqlSessionFactory factory = sqlSessionFactoryBuilder.build(reader, environment);
-		//SqlSessionFactory factory = sqlSessionFactoryBuilder.build(reader, environment,properties);
-		
+		if(factory==null){
+			Log.error("factory为空！");
+		}
+		/*else{
+			Log.fatalError(factory.toString());
+			return factory;
+		}*/
 		return factory;
+		
 	}
 	 
 }

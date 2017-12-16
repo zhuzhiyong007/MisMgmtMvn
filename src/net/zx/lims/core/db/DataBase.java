@@ -7,12 +7,16 @@ import java.sql.SQLException;
 
 import javax.sql.RowSet;
 
+import org.apache.ibatis.session.SqlSession;
+
+import net.zx.lims.core.util.Log;
 import net.zx.lims.core.util.Validate;
 
 public class DataBase {
 	String type=null;
 	boolean commit=false;
 	Connection conn=null;
+	ResultSet rs= null;   //不能作为局部变量，否则无法返回前台
 	
 	public DataBase(){
 		
@@ -23,29 +27,43 @@ public class DataBase {
 		this.type=autocommit;
 	}
 	
-	public DataBase(boolean autocommit){
-		this.commit=autocommit;
+	public DataBase(boolean autoCommit){
+		this.commit=autoCommit;
 		String extDataSource ="mysql";
-		
-		this.conn=getConnection(extDataSource);
-		System.out.println("555555555"+conn);
+		try{
+			this.conn=getConnection(extDataSource);
+			if(conn==null){
+				Log.error("conn未初始化！");
+			}
+			this.conn.setAutoCommit(autoCommit);
+		}catch(Exception e){
+			Log.error(e.getMessage());
+		}
+
 	}
 	
 	public static RowSet getPrepareSqlRs(String sql,Object[] params){
-		//δ���
+
 		return null;
 		
 	}
 	
 	public Connection getConnection(String extDataSource){
 		ConnectionDelegate delegate = new ConnectionDelegate();
-		return delegate.getConnection(extDataSource);
+		SqlSession session = delegate.getSqlSession(extDataSource);
+		if(session==null){
+			Log.error("session为空！");
+		}
+		return session.getConnection();
 	}
 	
 	
 	public ResultSet getPrepareRs(String sql){
 		try {
-			
+			if(conn==null){
+				Log.error("conn为空！");
+				return null;
+			}
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			
 			ResultSet rs =pstm.getResultSet();
@@ -61,16 +79,27 @@ public class DataBase {
 	
 	public ResultSet getPrepareRs(String sql,Object[] params){
 		try {
-			String[] ps = Validate.validate(params);
+			//String[] ps = Validate.validate(params);
+			Log.error(sql);
+			if(conn==null){
+				Log.error("conn为空！");
+				return null;
+			}
+			//PreparedStatement pstm = conn.prepareStatement(sql,ps);
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			if(pstm==null){
+				Log.error("pstm为空！");
+			}
+			rs = pstm.executeQuery();
+			//rs =pstm.getResultSet();
 			
-			PreparedStatement pstm = conn.prepareStatement(sql,ps);
-			
-			ResultSet rs =pstm.getResultSet();
-			
+			if(rs==null){
+				Log.error("resultset数据为空！");
+			}
 			return rs;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return null;
 		}
@@ -88,7 +117,7 @@ public class DataBase {
 			return rs;
 			
 		} catch (SQLException e) {
-			//Log.log("sql���ִ��ʧ�ܣ�");
+			Log.error(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;

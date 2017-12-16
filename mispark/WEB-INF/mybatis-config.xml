@@ -3,7 +3,7 @@
 <!-- 配置文件的根元素 -->  
 <configuration>  
     <!-- 属性：定义配置外在化 -->  
-    <properties resource="/jdbc.properties">  
+    <properties resource="/WEB-INF/jdbc.properties">  
   		<property name="username" value="root"/>  
   		<property name="password" value="admin"/>  
 	</properties>

@@ -9,7 +9,7 @@ import net.zx.lims.core.db.DataBase;
 public class Tools {
 	
 	/**
-	 * »ñÈ¡Êý¾Ý¿âÁ¬½Ó
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param autocommit
 	 * @return
 	 */
@@ -18,7 +18,7 @@ public class Tools {
 	}
 	
 	/**
-	 * µ÷ÓÃºóÌ¨javaÀà
+	 * ï¿½ï¿½ï¿½Ãºï¿½Ì¨javaï¿½ï¿½
 	 */
 	public static String getResult(){
 		
