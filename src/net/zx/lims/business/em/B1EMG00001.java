@@ -2,9 +2,6 @@ package net.zx.lims.business.em;
 
 import java.sql.ResultSet;
 
-import javax.sql.RowSet;
-
-import oracle.jdbc.driver.DBConversion;
 import net.zx.lims.core.db.DataBase;
 import net.zx.lims.core.util.Tools;
 
