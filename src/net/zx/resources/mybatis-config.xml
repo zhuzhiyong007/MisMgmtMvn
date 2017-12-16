@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration  
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<!-- 配置文件的根元素 -->  
+<configuration>  
+    
+    <!-- 类型名称：为一些类定义别名 -->  
+    <typeAliases>
+    
+      <!-- <typeAlias alias="City" type="SparkMaven.mysys.model.City"/>  -->
+      <!-- 
+      <typeAlias alias="Blog" type="com.zzy.mybatis.model.Blog"/>
+      --> 
+      <!-- <package name="SparkMaven.mysys.model"/>  -->
+      
+    </typeAliases>  
+    <!-- <typeAliases>  
+  <typeAlias alias="Author" type="domain.blog.Author"/>  
+  <typeAlias alias="Blog" type="domain.blog.Blog"/>  
+  <typeAlias alias="Comment" type="domain.blog.Comment"/>  
+  <typeAlias alias="Post" type="domain.blog.Post"/>  
+  <typeAlias alias="Section" type="domain.blog.Section"/>  
+  <typeAlias alias="Tag" type="domain.blog.Tag"/>  
+</typeAliases>   -->
+   
+    <!-- 映射器：指定映射文件或者映射类 -->  
+    <!-- 
+    <mappers>
+		  <mapper resource="mapper/CityMapper.xml"/>  
+		  <mapper resource="mapper/BlogMapper.xml"/>  
+		  <mapper resource="mapper/CommentMapper.xml"/>  
+    </mappers>  
+     -->
+     
+    <!-- Using mapper interface classes -->  
+	<!-- <mappers>  
+	  <mapper class="org.mybatis.builder.AuthorMapper"/>  
+	  <mapper class="org.mybatis.builder.BlogMapper"/>  
+	  <mapper class="org.mybatis.builder.PostMapper"/>  
+	</mappers>  
+	 -->
+ 
+	<!-- Using classpath relative resources -->  
+	<!-- <mappers>  
+	  <mapper resource="SparkMaven/mysys/mapper/CityMapper.xml"/>   
+	</mappers>  --> 
+	<!-- <mappers>  
+	  <mapper resource="classpath:SparkMaven/mysys/mapper/*.xml"/>  
+	</mappers> -->
+
+</configuration> 
