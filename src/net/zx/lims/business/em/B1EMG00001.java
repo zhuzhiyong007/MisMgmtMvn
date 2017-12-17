@@ -14,10 +14,12 @@ public class B1EMG00001 {
 		ResultSet rs = null;
 		try{
 			db = Tools.getDataBase(true);
-			String sql = "select * from citys";
+			String sql = "select * from users";
+			//String sql = "select * from citys";
 			rs =db.getPrepareRs(sql, new Object[]{});
 			while(rs.next()){
-				String name = rs.getString("city_name");
+				//String name = rs.getString("city_name");
+				String name = rs.getString("name");
 				Log.log(name);
 			}
 		}catch(Exception e){
