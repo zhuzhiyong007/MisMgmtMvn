@@ -15,12 +15,16 @@ public class B1EMG00001 {
 		RowSet rs = null;
 		try{
 			db = Tools.getDataBase(true);
+			
 			//String sql = "select * from users";
-			String sql = "select * from EMP where empno= ?";
+			//String sql = "select * from EMP where empno= ?";
+			String sql = "insert into users(name,password,userid) values(?,?,?)";
 			//String sql = "select * from citys";
-			rs =db.getPrepareRs(sql, new Object[]{"7369"});
+			
+			//rs =db.getPrepareRs(sql, new Object[]{"test","12345","zzy"});
+			db.executePrepareSql(sql, new Object[]{"test2","1234567","id123456"});
 
-			while(rs.next()){
+			/*while(rs.next()){
 				//String name = rs.getString("city_name");
 				//String name = rs.getString("name");
 				String id = rs.getColumn("EMPNO");
@@ -28,16 +32,17 @@ public class B1EMG00001 {
 				String date = rs.getColumn("HIREDATE");
 				
 				Log.log(id+name+date);
-			}
+			}*/
+			
 		}catch(Exception e){
 			Log.error(e.getMessage());
 		}finally{
-			if(rs!=null){
+			/*if(rs!=null){
 				rs.close();
 			}
 			if(db!=null){
 				db.cleanUp();
-			}
+			}*/
 		}
 	}
 	

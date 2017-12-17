@@ -160,26 +160,20 @@ public class DataBase {
 		}
 	}
 	
-	public boolean executePrepareSql(String sql,Object[] params){
+	public void executePrepareSql(String sql,Object[] params){
 		PreparedStatement pstm =null;
-		boolean rs =false;
+
 		try {
-			
-			//String[] ps = Validate.validate(params);
-			
 			pstm = conn.prepareStatement(sql);
 			if(pstm==null){
 				Log.error("pstm为空！");
 			}
 			PstmParms.setParams(pstm,params);
-			rs = pstm.execute();
-			
-			return rs;
+			pstm.execute();
 			
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
 			e.printStackTrace();
-			return false;
 		}finally{
 			
 			if(pstm!=null){
