@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import net.zx.lims.core.db.DataBase;
+import net.zx.lims.core.db.RowSet;
 import net.zx.lims.core.util.Log;
 import net.zx.lims.core.util.Tools;
 
@@ -11,27 +12,28 @@ public class B1EMG00001 {
 	
 	public void init(){
 		DataBase db =null;
-		ResultSet rs = null;
+		RowSet rs = null;
 		try{
 			db = Tools.getDataBase(true);
-			String sql = "select * from users";
+			//String sql = "select * from users";
+			String sql = "select * from EMP where empno= ?";
 			//String sql = "select * from citys";
-			rs =db.getPrepareRs(sql, new Object[]{});
+			rs =db.getPrepareRs(sql, new Object[]{"7369"});
+
 			while(rs.next()){
 				//String name = rs.getString("city_name");
-				String name = rs.getString("name");
-				Log.log(name);
+				//String name = rs.getString("name");
+				String id = rs.getColumn("EMPNO");
+				String name = rs.getColumn("ENAME");
+				String date = rs.getColumn("HIREDATE");
+				
+				Log.log(id+name+date);
 			}
 		}catch(Exception e){
 			Log.error(e.getMessage());
 		}finally{
 			if(rs!=null){
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				rs.close();
 			}
 			if(db!=null){
 				db.cleanUp();

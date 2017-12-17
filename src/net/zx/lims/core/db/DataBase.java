@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.RowSet;
-
 import org.apache.ibatis.session.SqlSession;
 
 import net.zx.lims.core.util.Log;
@@ -16,15 +14,10 @@ public class DataBase {
 	String type=null;
 	boolean commit=false;
 	Connection conn=null;
-	ResultSet rs= null;   //不能作为局部变量，否则无法返回前台
+	//ResultSet rs= null;   //不能作为局部变量，否则无法返回前台
 	
 	public DataBase(){
 		
-	}
-	
-	public DataBase(String autocommit){
-
-		this.type=autocommit;
 	}
 	
 	public DataBase(boolean autoCommit){
@@ -42,11 +35,11 @@ public class DataBase {
 
 	}
 	
-	public static RowSet getPrepareSqlRs(String sql,Object[] params){
+	public static RowSet getRs(String sql,Object[] params){
 
 		return null;
-		
 	}
+	
 	
 	public Connection getConnection(String extDataSource){
 		ConnectionDelegate delegate = new ConnectionDelegate();
@@ -59,69 +52,183 @@ public class DataBase {
 	
 	
 	public ResultSet getPrepareRs(String sql){
+		PreparedStatement pstm =null;
+		ResultSet rs =null;
 		try {
 			if(conn==null){
 				Log.error("conn为空！");
 				return null;
 			}
-			PreparedStatement pstm = conn.prepareStatement(sql);
-			
-			ResultSet rs =pstm.getResultSet();
-			
-			return rs;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public ResultSet getPrepareRs(String sql,Object[] params){
-		try {
-			//String[] ps = Validate.validate(params);
-			Log.error(sql);
-			if(conn==null){
-				Log.error("conn为空！");
-				return null;
-			}
-			//PreparedStatement pstm = conn.prepareStatement(sql,ps);
-			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm = conn.prepareStatement(sql);
 			if(pstm==null){
 				Log.error("pstm为空！");
 			}
-			rs = pstm.executeQuery();
-			//rs =pstm.getResultSet();
-			
+			rs =pstm.executeQuery();
 			if(rs==null){
 				Log.error("resultset数据为空！");
 			}
 			return rs;
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally{
+			if(rs!=null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstm!=null){
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(conn!=null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public RowSet getPrepareRs(String sql,Object[] params){
+		PreparedStatement pstm =null;
+		ResultSet rs =null;
+		try {
+			if(conn==null){
+				Log.error("conn为空！");
+				return null;
+			}
+
+			pstm = conn.prepareStatement(sql);
+			if(pstm==null){
+				Log.error("pstm为空！");
+			}
+			if(params.length!=0)
+				PstmParms.setParams(pstm,params);
+			
+			rs = pstm.executeQuery();
+			if(rs==null){
+				Log.error("resultset数据为空！");
+			}
+			
+			RowSet rowset = new RowSet(rs);
+			return rowset;
+			
+		} catch (SQLException e) {
 			
 			e.printStackTrace();
 			return null;
+		}finally{
+			if(rs!=null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstm!=null){
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(conn!=null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
 	public boolean executePrepareSql(String sql,Object[] params){
+		PreparedStatement pstm =null;
+		boolean rs =false;
 		try {
 			
-			String[] ps = Validate.validate(params);
+			//String[] ps = Validate.validate(params);
 			
-			PreparedStatement pstm = conn.prepareStatement(sql,ps);
-			
-			boolean rs = pstm.execute();
+			pstm = conn.prepareStatement(sql);
+			if(pstm==null){
+				Log.error("pstm为空！");
+			}
+			PstmParms.setParams(pstm,params);
+			rs = pstm.execute();
 			
 			return rs;
 			
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}finally{
+			
+			if(pstm!=null){
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	public boolean executePrepareSql(String sql){
+		PreparedStatement pstm =null;
+		boolean rs =false;
+		try {
+			
+			pstm = conn.prepareStatement(sql);
+			if(pstm==null){
+				Log.error("pstm为空！");
+			}
+			rs = pstm.execute();
+			
+			return rs;
+			
+		} catch (SQLException e) {
+			Log.error(e.getMessage());
+			e.printStackTrace();
+			return false;
+		}finally{
+			if(pstm!=null){
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 			try {
 				conn.close();
 			} catch (SQLException e) {
