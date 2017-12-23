@@ -5,10 +5,11 @@ import java.sql.SQLException;
 
 import net.zx.lims.core.db.DataBase;
 import net.zx.lims.core.db.RowSet;
+import net.zx.lims.core.frame.OneToMany;
 import net.zx.lims.core.util.Log;
 import net.zx.lims.core.util.Tools;
 
-public class B1EMG00001 {
+public class B1EMG00001 extends OneToMany{
 	
 	public void init(){
 		DataBase db =null;

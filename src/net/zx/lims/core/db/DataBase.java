@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.apache.ibatis.session.SqlSession;
+import java.util.ArrayList;
 
 import net.zx.lims.core.util.Log;
-import net.zx.lims.core.util.Validate;
+
+import org.apache.ibatis.session.SqlSession;
 
 public class DataBase {
 	String type=null;
@@ -197,6 +197,43 @@ public class DataBase {
 	
 	
 	public boolean executePrepareSql(String sql){
+		PreparedStatement pstm =null;
+		boolean rs =false;
+		try {
+			
+			pstm = conn.prepareStatement(sql);
+			if(pstm==null){
+				Log.error("pstm为空！");
+			}
+			rs = pstm.execute();
+			
+			return rs;
+			
+		} catch (SQLException e) {
+			Log.error(e.getMessage());
+			e.printStackTrace();
+			return false;
+		}finally{
+			if(pstm!=null){
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public boolean executePrepareSqlBatch(String sql,ArrayList<Object[]> list){
 		PreparedStatement pstm =null;
 		boolean rs =false;
 		try {

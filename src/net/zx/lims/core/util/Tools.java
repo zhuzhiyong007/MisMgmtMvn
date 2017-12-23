@@ -24,4 +24,9 @@ public class Tools {
 		
 		return null;
 	}
+	
+	
+	public void getCustomXML(){
+		
+	}
 }
