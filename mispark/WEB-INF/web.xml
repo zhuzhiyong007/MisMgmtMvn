@@ -40,7 +40,7 @@
 	</context-param>
 	
 	
-	<context-param>
+	<!-- <context-param>
       <param-name>userSessionKey</param-name>
       <param-value>USERSESSONKEY</param-value>
   </context-param>
@@ -52,7 +52,7 @@
       <param-name>uncheckUrls</param-name>
       <param-value>/Login.jsp</param-value>
   </context-param>
-  
+   -->
   
 	<!-- <filter> <filter-name>encodingFilter</filter-name> <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
 		<async-supported>true</async-supported> <init-param> <param-name>encoding</param-name> 
@@ -72,14 +72,14 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter>
+	<!-- <filter>
 		<filter-name>FrontFilter</filter-name>
 		<filter-class>net.zx.lims.core.net.LoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>  -->
 	
 	
 	

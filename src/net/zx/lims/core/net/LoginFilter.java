@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class FrontFilter
  */
-//@WebFilter("/FrontFilter")
-public class FrontFilter implements Filter {
+//@WebFilter("/LoginFilter")
+public class LoginFilter implements Filter {
 
 	// 从xml中取值
 	String uncheckUrls = null;
@@ -29,7 +29,7 @@ public class FrontFilter implements Filter {
 	/**
 	 * Default constructor.
 	 */
-	public FrontFilter() {
+	public LoginFilter() {
 		// TODO Auto-generated constructor stub
 	}
 

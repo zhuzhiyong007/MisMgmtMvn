@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Test
  */
-@WebServlet("/FrontServlet")
+//@WebServlet("/FrontServlet")
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
