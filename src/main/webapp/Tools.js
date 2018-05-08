@@ -2,24 +2,24 @@ function MyTools(){
 	
 }
 
-MyTools.getResult=getResult;
+//MyTools.getResult=getResult;
 
 function getXMLHttp(){
+	var xmlrequest;
 	if (window.ActiveXObject) {
-
 		try {
 			xmlrequest = new ActiveXObject("Microsoft.XMLHTTP");
 		} catch (e) {
 			xmlrequest = "";
 		}
 
-	}else{
-		XMLHTTP xmlrequest = new XMLHTTP();
+	} else {
+		xmlrequest = new XMLHTTP();
 	}
 }
 
-function getResult( params,className,method,postType) {
-	XMLHTTP xmlrequest = getXMLHttp();
+function getResult(params,className,method,jsback,postType) {
+	var xmlrequest = getXMLHttp();
 	var url = "/xlst/getAjaxText.jsp?params="+params+"&className="+className+"&method="+method;
 	
 	if(!postType){
@@ -46,7 +46,7 @@ function trace(pgmto, pkto, pgmfrom, pkfrom, params) {
 }
 
 
-//ajax异步获取servlet数据
+//ajax寮傛鑾峰彇servlet鏁版嵁
 function createXMLHttpRequest() {
 
 	var xmlrequest;
@@ -81,7 +81,7 @@ function createXMLHttpRequest() {
 
 }
 
-// 获取数据的函数
+// 鑾峰彇鏁版嵁鐨勫嚱鏁�
 
 function change() {
 

@@ -54,10 +54,12 @@ public class UserLogin extends HttpServlet {
 		 * out.println("</body>") ; out.println("</html>") ; out.close() ;
 		 */
 
-		String name = request.getParameter("name");
-		if ("server".equals(name)) {
+		String name = request.getParameter("userName");
+		String passwd = request.getParameter("password");
+		String eid = request.getParameter("eid");
+		if ("sys".equals(name)) {
 			// 服务器端跳转
-			request.getSession().setAttribute("name", "李兴华");
+			request.getSession().setAttribute("name", "sys");
 			request.setAttribute("info", "MLDNJAVA");
 			
 			//
@@ -65,8 +67,8 @@ public class UserLogin extends HttpServlet {
 			
 			String id = (String) request.getSession().getAttribute("USERSESSONKEY");
 			
-			//RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
-			RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
+			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
+			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
 			rd.forward(request, response); // 完成跳转
 		}
 		else {
@@ -76,8 +78,8 @@ public class UserLogin extends HttpServlet {
 			request.setAttribute("info", "MLDNJAVA");
 			response.sendRedirect("/MisMgmtMvn/xlst/index2.jsp");*/
 			
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
+			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
+			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
 			rd.forward(request, response); // 完成跳转
 		}
 	}

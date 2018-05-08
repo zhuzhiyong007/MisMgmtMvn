@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mispark-content>
+<mispark-content id="123">
 	<table id="OGORGMSK" labelId="公司" state="">
 		<field id="org_no" labelId="主键" type="" style="" renderType="" listView="" canNull="" readOnly="" />
 		<field id="org_nam" labelId="字段名" type="" style="" renderType="" />

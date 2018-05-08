@@ -1,10 +1,11 @@
 <%@page import="net.zx.lims.business.em.B1EMG00001"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="ieas" uri="SparkMisTag"%>
+<%@taglib prefix="Ieas" uri="SparkMisTag"%>
 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
 %>
 
 
@@ -80,11 +81,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		$('.select li').click(function(){
 			var eid=$(this).attr('eid');
-			var eid_input='<input type="hidden" value="'+eid+'" name="eid" id="eid" \/>';
+			//var eid_input='<input type="hidden" value="'+eid+'" name="eid" id="eid" \/>';
 			var _eidhtml=$(this).html();
-			$('.eid_value').html(_eidhtml);
+			$('.eid_value').html(_eidhtml); //设置显示的p
 			if($('#eid').attr('value')){
-				$('#eid').attr('value',eid);	
+				$('#eid').attr('value',eid);	//设置input
 			}
 			
 		})
@@ -135,11 +136,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="form_info">
 					<div class="field">
 						<label>用户名：</label>
-						<input type="text" class="text" size="20">
+						<input name="userName" type="text" class="text" size="20" value="sys">
 					</div>
 					<div class="field">
 						<label>密　码：</label>
-						<input type="password" class="text" size="20">
+						<input id="password" name="password" type="password" class="text" size="20">
 					</div>
 					<div class="field">
 						<label>验证码：</label>
@@ -154,6 +155,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</form>
 		</div>
 	</div>
-	
+
 </body>
 </html>

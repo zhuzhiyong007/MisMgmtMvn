@@ -57,7 +57,7 @@ img{
 /*top*/
 .top{
 	width:100%;
-	height:98px;
+	height:70px;
 	background:url(../images/top_bg.jpg) repeat-x left top;;
 }
 
@@ -79,13 +79,45 @@ img{
 	top:38px;
 	margin-left:200px;
 }
+.member_info{
+	position:relative;
+	float:right;
+	margin-top:0px;
+	background:url(../images/member_info.png) no-repeat 0 0;
+	width:271px;
+	height:40px;
+}
+.member_info a{
+	color:#f1f1f1;
+	line-height:24px;
+}
+.member_ico img{
+	padding:4px 0 0 4px;
+}
+.member_ico{
+	width:55px;
+	height:55px;
+	position:absolute;
+	margin-top:-10px;
+	margin-left:15px;
+	border:none;
+	background:url(../images/member_info_ico.png) no-repeat 0 0;
+}
+.member_info a.system_a{
+	margin-left:94px;
+	margin-right:33px;
+}
+.member_info a.system_logout{
+	margin-left:25px;
+}
+
 .top_about{
 	position:absolute;
 	height:30px;
 	overflow:hidden;
-	width:170px;
-	right:50px;
-	background:url(../images/top_help.jpg) no-repeat center 0;
+	width:400px;
+	right:20px;
+	background:url(../images/top_help.jpg) no-repeat left 0;
 	top:0;
 }
 .top_about a{
@@ -99,6 +131,7 @@ img{
 .top_about a.help2{
 	margin-left:30px;
 }
+
 .top_nav li{
 	float:left;
 	padding-left:6px;
@@ -123,7 +156,7 @@ img{
 	clear:both;
 	color:#5f5f5f;
 	line-height:25px;
-	text-indent:80px;
+	text-align:right;
 	background:url(../images/top_member.jpg) repeat-x 0 bottom;
 }
 .top_member a{
@@ -134,40 +167,11 @@ img{
 /*left*/
 .left{
 	width:205px;
-	height:100%;
+/* 	height:100%; */
 	position:absolute;
 	background:url(../images/side_bg.jpg) repeat-y 0 0;
 }
-.member_info{
-	position:relative;
-	margin-top:-3px;
-	background:url(../images/member_info.png) no-repeat 0 0;
-	width:271px;
-	height:40px;
-}
-.member_info a{
-	color:#f1f1f1;
-	line-height:24px;
-}
-.member_ico img{
-	padding:4px 0 0 4px;
-}
-.member_ico{
-	width:55px;
-	height:55px;
-	position:absolute;
-	margin-top:-20px;
-	margin-left:15px;
-	border:none;
-	background:url(../images/member_info_ico.png) no-repeat 0 0;
-}
-.member_info a.system_a{
-	margin-left:94px;
-	margin-right:33px;
-}
-.member_info a.system_logout{
-	margin-left:25px;
-}
+
 .left .left_title{
 	clear:both;
 	width:197px;
@@ -190,7 +194,7 @@ img{
 	background: url(../images/left_ico_default.gif)  no-repeat 25px center;
 	
 }
-.left .side a{
+.left .side label{
 	display:block;
 	padding:10px;
 	text-align:left;
@@ -198,7 +202,7 @@ img{
 	margin-right:10px;
 	
 }
-.left .side a:hover{
+.left .side label:hover{
 	background:#2d689f;
 	background:#2d689f url(../images/left_ico_light.gif)  no-repeat 25px center;
 	
@@ -233,8 +237,13 @@ img{
 /*right*/
 .right{
 	width:100%;
-	height:100%;
+	/*height:100%;*/
 	background:#666;
+}
+.bottom{
+	width:100%;
+	height:5%;
+	background:#000080;
 }
 .body{
 	width:99%;

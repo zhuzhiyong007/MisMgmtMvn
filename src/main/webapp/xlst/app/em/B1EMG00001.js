@@ -1,5 +1,5 @@
-function liems3Onload(){
-	
+function LiemsLoadEvent(){
+	alert(LiemsLoadEvent);
 }
 
 function Business(){
@@ -44,3 +44,16 @@ function serviceBack_setServiceValue(){
 	addPageInfo("","0","鎴愬姛");
 	addPageInfo("","1","澶辫触");
 }
+
+var domObj = ''; 
+var domStr='<car><brand><price>50万</price><pattern>A6</pattern></brand><brand><price>65万</price><pattern>A8</pattern></brand><brand><price>17万</price></brand></car>'; 
+	if(window.ActiveXObject){    
+		domObj = new ActiveXObject("Microsoft.XMLDOM").load(domStr); 
+	} else {      
+		domObj=new DomParser().parseFromString(domStr,"text/xml");
+	}
+	
+	var strNodes=domObj.documentElement.childNodes; 
+	alert(strNodes.item(0).childNodes.item(0).childNodes.item(0).text); //弹出50万 
+	alert(strNodes.item(0).childNodes.item(1).childNodes.item(0).text); //弹出A6 
+

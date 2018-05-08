@@ -36,7 +36,7 @@ public class FrontServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//完成jsp的转发
 		String pgmNo = request.getParameter("pgmNo");
-		String pkValue = request.getParameter("pkValue");
+		//String pkValue = request.getParameter("pkValue");
 		
 		request.getRequestDispatcher("/xlst/app/em/"+pgmNo+".jsp").forward(request, response);;
 	}

@@ -75,4 +75,12 @@
     <servlet-name>UserLogin</servlet-name>
     <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>FrontServlet</servlet-name>
+    <servlet-class>net.zx.lims.core.net.FrontServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FrontServlet</servlet-name>
+    <url-pattern>/FrontServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

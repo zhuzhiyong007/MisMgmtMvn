@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
     version="2.0">
     <tlib-version>1.0</tlib-version>
     <short-name>zxtag</short-name>
      <!--  <uri>http://www.zx.com.cn/</uri>  -->
+     
     <tag>
-       <name>date</name>
+       <name>DataDomClientTag</name>
        <tag-class>net.zx.lims.tag.DataDomClientTag</tag-class>
        <body-content>empty</body-content>
     </tag>
+    <tag>
+       <name>DataDomInitTag</name>
+       <tag-class>net.zx.lims.tag.DataDomInitTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>FieldTag</name>
+       <tag-class>net.zx.lims.tag.FieldTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>TabsTag</name>
+       <tag-class>net.zx.lims.tag.TabsTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>Grid9DefineTag</name>
+       <tag-class>net.zx.lims.tag.Grid9DefineTag</tag-class>
+       <body-content>JSP</body-content>
+    </tag>
+    <tag>
+       <name>ComponentTag</name>
+       <tag-class>net.zx.lims.tag.ComponentTag</tag-class>
+       <body-content>empty</body-content>
+       <attribute>
+       		<name>title</name>
+       		<required>true</required>
+       		<rtexprvalue>true</rtexprvalue>
+       </attribute>
+    </tag>
+    <tag>
+       <name>JQTag</name>
+       <tag-class>net.zx.lims.tag.JQTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>GDTag</name>
+       <tag-class>net.zx.lims.tag.GDTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>FieldLebelTag</name>
+       <tag-class>net.zx.lims.tag.FieldLebelTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    <tag>
+       <name>RightMenuTag</name>
+       <tag-class>net.zx.lims.tag.RightMenuTag</tag-class>
+       <body-content>empty</body-content>
+    </tag>
+    
 </taglib>

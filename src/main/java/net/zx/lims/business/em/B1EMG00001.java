@@ -51,6 +51,8 @@ public class B1EMG00001 extends OneToMany{
 	}
 	
 	
-	
+	public void getAjax(){
+		System.out.println(111111);
+	}
 	
 }

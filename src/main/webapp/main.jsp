@@ -32,14 +32,27 @@ function openMsgWindow() {
 		content: "<div style='line-height:25px'>您有新的站内信<Br><a href=\"http://www.uimaker.com\">点此阅读</a></div>"
 	});
 }
+
+function toPgm(){
+	$("#main").attr("src","<%=basePath%>FrontServlet?pgmNo=B1EMG00001");
+}
 </script>
 </head>
-<body style="overflow:hidden;">
+<body >
 <div class="top">
-	<div class="top_about">	
-		<a href="#" class="help1" id="btn2" onclick="openMsgWindow()">使用帮助</a>
-		<a href="#" class="help2">关于</a>
+	<div class="member_info">
+		<div class="member_ico">
+ 			<img src="images/a.png" width="43" height="43">
+		</div>
+		<a class="system_a" href="">系统设置</a>
+		<a href="" class="system_log">注销</a>
+		<a href="" class="system_logout">退出</a>
+		<div class="top_about" style="display:none">	
+			<a href="#" class="help1" id="btn2" onclick="openMsgWindow()">使用帮助</a>
+			<a href="#" class="help2">关于</a>
+		</div>
 	</div>
+
 	<div class="admin_logo">
 		<img src="images/admin_logo.jpg">
 	</div>
@@ -56,33 +69,27 @@ function openMsgWindow() {
 				<li><a href="#">系统设置</a></li>
 			</ul>
 	</div>
-	<div class="top_member">
-	欢迎您，Admin | <a href="#">帐号管理</a> | <a href="#">充值</a> | <a href="#">编辑</a> | <a href="#">2条信息</a>
-	</div>
 </div>
 <div class="side_switch" id="side_switch">
 </div>
 <div class="side_switchl" id="side_switchl">
 </div>
-<div class="left">
-	<div class="member_info"><div class="member_ico"><img src="images/a.png" width="43" height="43"></div><a class="system_a" href="">系统设置</a><a href="" class="system_log">注销</a><a href="" class="system_logout">退出</a></div>
+<div class="left" style="height:625px">
 	<div class="left_title">常用功能操作</div>
 	<ul class="side">
-		<li><a href="#">网站栏目管理</a></li>
-		<li><a href="#" class="selected">档案列表</a></li>
-		<li><a href="#">等待审核的文档(23)</a></li>
-		<li><a href="table.jsp" target="main">我发布的文档</a></li>
-		<li><a href="#">评论管理</a></li>
-		<li><a href="#">内容回收站</a></li>
-	</ul>
-	<ul class="side catsub">
-				<li class="feed"><a href="http://www.uimaker.com">网站订阅查看</a></li>
-				<li class="side_about"><a href="#">版权声明</a></li>
-	</ul>
+		<li><label>网站栏目管理</label></li>
+		<li><label class="selected">档案列表</label></li>
+		<li><label onclick="toPgm()">jsp页面</label></li>
+		<li><label>我发布的文档</label></li>
+		<li><label>评论管理</label></li>
+		<li><label>内容回收站</label></li>
+	</ul> 
 </div>
 <div class="right">
-	<IFRAME style="OVERFLOW: visible" id="main" name="main" src="default.jsp" frameBorder=0 width="100%" scrolling="yes" height="100%"></IFRAME>
+	<IFRAME id="main" name="main" src="default.jsp" frameBorder=0 width="100%" scrolling="yes" style="height:625px"></IFRAME>
 </div>
-
+<div id="bottom" style="height:30px">
+	<a href="#">版权声明:天宇集团</a>  |  地址：长江路
+</div>
 </body>
 </html>
