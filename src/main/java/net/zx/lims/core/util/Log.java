@@ -10,12 +10,19 @@ public class Log {
 		 logger.info("[系统日志] "+getStackTrace(e));
 	 }
 	 
+	 public static void log(String e){
+		 logger.info("[系统日志] "+e);
+	 }
+	 
 	 public static void info(String message){
 		 logger.info("[系统信息] "+message);
 	 }
 	 
 	 public static void error(String message){
-		 logger.info("[系统一般错误] "+message);
+		 logger.error("[系统一般错误] "+message);
+	 }
+	 public static void error(Exception e){
+		 logger.error("[系统一般错误] "+e);
 	 }
 	 
 	 public static void fatalError(String message){

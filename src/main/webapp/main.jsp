@@ -36,6 +36,9 @@ function openMsgWindow() {
 function toPgm(){
 	$("#main").attr("src","<%=basePath%>FrontServlet?pgmNo=B1EMG00001");
 }
+function tojsp(){
+	$("#main").attr("src","<%=basePath%>FrontServlet?pgmNo=B1EMG00002");
+}
 </script>
 </head>
 <body >
@@ -80,7 +83,7 @@ function toPgm(){
 		<li><label>网站栏目管理</label></li>
 		<li><label class="selected">档案列表</label></li>
 		<li><label onclick="toPgm()">jsp页面</label></li>
-		<li><label>我发布的文档</label></li>
+		<li><label onclick="tojsp()">我发布的文档</label></li>
 		<li><label>评论管理</label></li>
 		<li><label>内容回收站</label></li>
 	</ul> 

@@ -9,7 +9,7 @@ public class Content {
 	public static String user="用户名";
 	public static String passwd="密码";
 	public static String reset="重置";
-	
+	public static String requestMassage="rqtData";
 	
 	
 

@@ -67,9 +67,10 @@ public class UserLogin extends HttpServlet {
 			
 			String id = (String) request.getSession().getAttribute("USERSESSONKEY");
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
+			//RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
 			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
-			rd.forward(request, response); // 完成跳转
+			//rd.forward(request, response); // 完成跳转
+			response.sendRedirect("/MisMgmtMvn/xlst/index.jsp");
 		}
 		else {
 		
@@ -78,9 +79,10 @@ public class UserLogin extends HttpServlet {
 			request.setAttribute("info", "MLDNJAVA");
 			response.sendRedirect("/MisMgmtMvn/xlst/index2.jsp");*/
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
+			//RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
 			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
-			rd.forward(request, response); // 完成跳转
+			//rd.forward(request, response); // 完成跳转
+			response.sendRedirect("/MisMgmtMvn/xlst/index.jsp");
 		}
 	}
 }

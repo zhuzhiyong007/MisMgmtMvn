@@ -1,7 +1,14 @@
 package net.zx.lims.core.net;
 
-public class SessionInfo {
+import java.io.Serializable;
 
+public class SessionInfo implements Serializable {
+	private String usrId; 
+	private String currentLanguage; 
+	private String defaultOrg;
+	
+	private static final long serialVersionUID = 1L;
+	
 	public void getCurrentUser(){
 		
 		

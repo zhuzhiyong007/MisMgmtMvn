@@ -76,11 +76,43 @@
     <url-pattern>/UserLogin</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>JSONData</servlet-name>
+    <servlet-class>net.zx.lims.core.net.JSONData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONData</servlet-name>
+    <url-pattern>/JSONData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SubGrid</servlet-name>
+    <servlet-class>net.zx.lims.core.net.SubGrid</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubGrid</servlet-name>
+    <url-pattern>/SubGrid</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>FrontServlet</servlet-name>
     <servlet-class>net.zx.lims.core.net.FrontServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FrontServlet</servlet-name>
     <url-pattern>/FrontServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>HiddenServlet</servlet-name>
+    <servlet-class>net.zx.lims.core.net.HiddenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HiddenServlet</servlet-name>
+    <url-pattern>/HiddenServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServiceAgent</servlet-name>
+    <servlet-class>net.zx.lims.core.net.ServiceAgent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServiceAgent</servlet-name>
+    <url-pattern>/ServiceAgent</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,43 +1,79 @@
+
 function MyTools(){
-	
+	this.name="zhuzhiyong";
 }
 
-//MyTools.getResult=getResult;
+MyTools.prototype.getResult=getResult;
+MyTools.prototype.getAsyResult=getAsyResult;
+MyTools.prototype.trace=trace;
+MyTools.prototype.isEmpty=isEmpty;
 
+//获取xmlhttp
 function getXMLHttp(){
-	var xmlrequest;
+	var xmlHttp;
 	if (window.ActiveXObject) {
-		try {
-			xmlrequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (e) {
-			xmlrequest = "";
-		}
+		var aVersions = [ "MSXML2.XMLHttp.5.0", "MSXML2.XMLHttp.4.0","MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp", "Microsoft.XMLHttp" ];
+  		for (var i = 0; i < aVersions.length; i++) {
+  			try {
+  				xmlHttp = new ActiveXObject(aVersions[i]);
+  				return xmlHttp;
+  			} catch (oError) {
+  			}
+  		}
 
-	} else {
-		xmlrequest = new XMLHTTP();
+	}else if (window.XMLHttpRequest) {
+		xmlHttp = new XMLHttpRequest();
+	}else {
+		xmlHttp = new XMLHTTP();
 	}
+	return xmlHttp;
 }
 
 function getResult(params,className,method,jsback,postType) {
 	var xmlrequest = getXMLHttp();
 	var url = "/xlst/getAjaxText.jsp?params="+params+"&className="+className+"&method="+method;
-	
 	if(!postType){
 		postType="GET";
 	}
-	
 	if(postType=="POST"){
-		url = "/xlst/getAjaxText.jsp?className="+className+"&method="+method;
+		url = "/xlst/getAjaxText.jsp?params="+params+"&className="+className+"&method="+method;
 	}
-	
-	
-	var status = xmlrequest.open();
-	
+	var status = xmlrequest.open(postType,url);
 	if(status=="200"){
 		return xmlrequest.resultText;
 	}
+	return "";
+}
+
+function getAsyResult(params,className,method,jsback,postType){
+	var xmlrequest = getXMLHttp();
+//	xmlrequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//	xmlrequest.send("fname=Henry&lname=Ford");
+	var url = "/MisMgmtMvn/xlst/getAjaxText.jsp?params="+params+"&className="+className+"&method="+method;
+	if(!postType){
+		postType="GET";
+	}
+	if(postType=="POST"){
+		url = "/MisMgmtMvn/xlst/getAjaxText.jsp?params="+params+"&className="+className+"&method="+method;
+	}
+	var status = xmlrequest.open(postType,url,true);
+	xmlrequest.send();
+	alert(11);
+	alert(xmlrequest.responseText);
+	//设置回调方法
+	xmlrequest.onreadystatechange = function() {   
+		if (xmlrequest.readyState == 4 && xmlrequest.status == 200) {
+			var data = JSON.parse(xmlrequest.responseText);
+			if(jsback!=undefined && jsback!=null&& jsback!=""){
+				eval("jsback("+data+")");  //执行回调方法
+			}else{
+				createMenu(data);
+			}
+		} else {
+		    alert("ajax error!");
+		}
+	};
 	
-	return null;
 }
 
 
@@ -46,79 +82,16 @@ function trace(pgmto, pkto, pgmfrom, pkfrom, params) {
 }
 
 
-//ajax寮傛鑾峰彇servlet鏁版嵁
-function createXMLHttpRequest() {
-
-	var xmlrequest;
-
-	if (window.XMLHttpRequest) {
-
-		xmlrequest = new XMLHttpRequest();
-
-	} else if (window.ActiveXObject) {
-
-		try {
-
-			xmlrequest = new ActiveXObject("Msxm12.XMLHTTP");
-
-		} catch (e) {
-
-			try {
-
-				xmlrequest = new ActiveXObject("Microsoft.XMLHTTP");
-
-			} catch (e) {
-
-				xmlrequest = "";
-
-			}
-
-		}
-
+function isEmpty(param) {
+	if(param!=undefined && param!=null&& param!=""){
+		return true;
+	}else{
+		return false;
 	}
-
-	return xmlrequest;
-
 }
 
-// 鑾峰彇鏁版嵁鐨勫嚱鏁�
+var Tools = new MyTools();
 
-function change() {
+//var canshu =11;
+//Tools.getResult(canshu,"net.zx.lims.business.em.B1EMG00001","getAjax","","POST");
 
-	var xmlrequest = createXMLHttpRequest();
-
-	xmlrequest.open("POST", "AjaxServlet", true);
-
-	xmlrequest.onreadystatechange = function() {
-
-		if (xmlrequest.readyState == 4 && xmlrequest.status == 200) {
-
-			var data = JSON.parse(xmlrequest.responseText);
-
-			var content = "<table border=1>";
-
-			for (var i = 0; i < data.length; i++) {
-
-				content += "<tr>";
-
-				for (o in data[i]) {
-
-					content += "<td>" + data[i][o] + "</td>";
-
-				}
-
-				content += "</tr>";
-
-			}
-
-			content += "</table>";
-
-			document.getElementById("test").innerHTML = content;
-
-		}
-
-	};
-
-	xmlrequest.send();
-
-}

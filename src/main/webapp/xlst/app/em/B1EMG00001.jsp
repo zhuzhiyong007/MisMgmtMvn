@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>js/iframe.js"></script>
 <Ieas:ComponentTag title="getProgramTitle"/>
 </head>
-<body ><!-- onLoad="LiemsLoadEvent()" -->
+<body onload="LiemsLoadEvent()"><!-- onLoad="LiemsLoadEvent()" -->
 	<Ieas:TabsTag/>
 	<Ieas:DataDomInitTag/>
 	<h1>B1EMG00001JSP</h1>
@@ -39,7 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	<script src="<%=basePath%>mispark.js"></script>
 	<script src="<%=basePath%>Tools.js"></script>
-	<script src = "<%=basePath%>testAjax.js"></script>
 	<script src = "<%=basePath%>xlst/app/em/B1EMG00001.js"></script>
 <!-- 	<iframe id="ServiceFrame" src="hiddenServlet?"></iframe> -->
 </body>

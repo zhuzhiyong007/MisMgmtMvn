@@ -1,8 +1,8 @@
 function LiemsLoadEvent(){
-	alert(LiemsLoadEvent);
+	alert("LiemsLoadEvent");
 }
 
-function Business(){
+function BusinessOnclick(){
 	
 	p.addParm("","czml()");
 }
@@ -45,15 +45,28 @@ function serviceBack_setServiceValue(){
 	addPageInfo("","1","å¤±è´¥");
 }
 
-var domObj = ''; 
-var domStr='<car><brand><price>50Íò</price><pattern>A6</pattern></brand><brand><price>65Íò</price><pattern>A8</pattern></brand><brand><price>17Íò</price></brand></car>'; 
+function testXMLDom(){
+	//text
+	var domObj = ''; 
+	var domStr='<car><price>50ä¸‡</price></car>'; 
 	if(window.ActiveXObject){    
 		domObj = new ActiveXObject("Microsoft.XMLDOM").load(domStr); 
 	} else {      
-		domObj=new DomParser().parseFromString(domStr,"text/xml");
+		domObj=new DOMParser().parseFromString(domStr,"text/xml");
 	}
 	
-	var strNodes=domObj.documentElement.childNodes; 
-	alert(strNodes.item(0).childNodes.item(0).childNodes.item(0).text); //µ¯³ö50Íò 
-	alert(strNodes.item(0).childNodes.item(1).childNodes.item(0).text); //µ¯³öA6 
+	var title = domObj.getElementsByTagName("price")[0];
+	alert(title.childNodes[0].nodeValue); 
+	
+}
 
+//var xmlDoc=liemsDom.loadXMLDoc("B1EMG00001.xml");
+//var txt=xmlDoc.getElementsByTagName("field")[0].childNodes[0].nodeValue;
+//alert(txt);
+
+function TESTMST_PRO_generateView_onclick(obj){
+	var foreign = new Foreign(obj);
+	foreign.addParam("id","123");
+	foreign.addParam("name","hello");
+	foreign.patchForeignInfo("");
+}

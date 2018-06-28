@@ -11,48 +11,27 @@ import javax.servlet.jsp.tagext.TagSupport;
  *将后端传过来的Dom的string字符串转换为前端的Dom
  */
 public class DataDomClientTag extends TagSupport{
-    /* (non-Javadoc)
-	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
-	 */
 	@Override
 	public int doStartTag() throws JspException {
-		// TODO Auto-generated method stub
 		return super.doStartTag();
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.jsp.tagext.TagSupport#doEndTag()
-	 */
 	@Override
 	public int doEndTag() throws JspException {
 //		String domStr = (String) pageContext.getSession().getAttribute("LiemsDom");
-		//解析xml字符串///////////////////////////////////////////////////////////////////////// 
+		//解析xml字符串
 		String domStr="<car>"+ 
 		"<brand><price>50万</price><pattern>A6</pattern></brand>"+ 
 		"<brand><price>65万</price><pattern>A8</pattern></brand>"+ 
 		"<brand><price>17万</price></brand>"+ 
 		"</car>"; 
-		String domObj ="";
-//		StringBuffer domObj = new StringBuffer("<script> var domObj = ''; var domStr=\'"+domStr+ "\';");
-//		domObj.append(" if(window.ActiveXObject){    ");
-//		domObj.append("		domObj = new ActiveXObject(\"Microsoft.XMLDOM\").load(domStr);  ");
-//		domObj.append(" } else {              ");
-//		domObj.append("		domObj=new DomParser().parseFromString(domStr,\'text/xml\');  ");
-//		domObj.append(" }      ");
-//		domObj.append("  </script>  ");
-		
-
-		  
-//		//跨浏览器，ie和火狐解析xml使用的解析器是不一样的。 
-//		var xmlStrDoc=null; 
-//		if (window.DOMParser){// Mozilla Explorer 
-//		 parser=new DOMParser(); 
-//		 xmlStrDoc=parser.parseFromString(str,"text/xml"); 
-//		}else{// Internet Explorer 
-//		 xmlStrDoc=new ActiveXObject("Microsoft.XMLDOM"); 
-//		 xmlStrDoc.async="false"; 
-//		 xmlStrDoc.loadXML(str); 
-//		} 
+		StringBuffer domObj = new StringBuffer("<script> var domObj = ''; var domStr=\'"+domStr+ "\';");
+		domObj.append(" if(window.ActiveXObject){    ");
+		domObj.append("		domObj = new ActiveXObject(\"Microsoft.XMLDOM\").load(domStr);  ");
+		domObj.append(" } else {              ");
+		domObj.append("		domObj=new DOMParser().parseFromString(domStr,\'text/xml\');  ");
+		domObj.append(" }   console.log(domObj);   ");
+		domObj.append("  </script>  ");
 
 		try {
 			pageContext.getOut().write(domObj.toString());
@@ -61,7 +40,7 @@ public class DataDomClientTag extends TagSupport{
 		}
 		
 		//将后台的Message输出到前台
-		getBusinessMessages();
+		//getBusinessMessages();
 		
 		return TagSupport.EVAL_PAGE;
 	}

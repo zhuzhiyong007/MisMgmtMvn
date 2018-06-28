@@ -1,11 +1,19 @@
 package net.zx.lims.core.util;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.jdom.Document;
+import org.jdom.input.SAXBuilder;
+
 import net.zx.lims.core.db.DataBase;
 import net.zx.lims.core.db.RowSet;
+import net.zx.lims.core.net.SessionInfo;
 
 /**
  * @author Administrator
@@ -38,7 +46,6 @@ public class Tools {
     	try {
 			domstr = Dom4jXML.readXML(file);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return domstr;
@@ -56,5 +63,28 @@ public class Tools {
 		map.put("mname2","mvalue2");
 		map.put("mname3","mvalue3");
 		return map;
+	}
+	
+	public static SessionInfo getSession(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		SessionInfo sessionInfo = (SessionInfo)session.getAttribute("sessionInfo");
+		if(sessionInfo==null){
+			synchronized(session){
+				sessionInfo = new SessionInfo();
+				session.setAttribute("sessionInfo", sessionInfo);
+			}
+		}
+		return sessionInfo;
+	}
+	
+	public static Document toDocument(String xml){
+		SAXBuilder saxReader = new SAXBuilder();   		  
+		Document document=null;
+		try {
+			document = saxReader.build(new ByteArrayInputStream(xml.getBytes()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+		return document;
 	}
 }
