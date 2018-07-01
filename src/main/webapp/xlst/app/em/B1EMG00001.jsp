@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 <%@taglib prefix="Ieas" uri="SparkMisTag"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="<%=basePath%>css/admin_style.css" />
-<script src="<%=basePath%>js/jquery-1.4.4.min.js"></script>
-<script src="<%=basePath%>js/iframe.js"></script>
+<link rel="stylesheet" type="text/css" href="/MisMgmtMvn/css/admin_style.css" />
+<script src="/MisMgmtMvn/js/jquery-1.4.4.min.js"></script>
+<script src="/MisMgmtMvn/js/iframe.js"></script>
 <Ieas:ComponentTag title="getProgramTitle"/>
 </head>
 <body onload="LiemsLoadEvent()"><!-- onLoad="LiemsLoadEvent()" -->
@@ -37,9 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<Ieas:DataDomClientTag/>
 		
-	<script src="<%=basePath%>mispark.js"></script>
-	<script src="<%=basePath%>Tools.js"></script>
-	<script src = "<%=basePath%>xlst/app/em/B1EMG00001.js"></script>
+	<script src="/MisMgmtMvn/mispark.js"></script>
+	<script src="/MisMgmtMvn/Tools.js"></script>
+	<script src = "/MisMgmtMvn/xlst/app/em/B1EMG00001.js"></script>
 <!-- 	<iframe id="ServiceFrame" src="hiddenServlet?"></iframe> -->
 </body>
 </html>

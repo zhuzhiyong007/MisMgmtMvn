@@ -355,4 +355,12 @@ public class DataDom implements Serializable{
             fw.close();
         }
     }
+	 
+	 public Table getRootTable(){
+		 return this.tables.get("rootTable");
+	 }
+	 
+	 public Table getTable(String tableName){
+		 return  this.tables.get(tableName);
+	 }
 }

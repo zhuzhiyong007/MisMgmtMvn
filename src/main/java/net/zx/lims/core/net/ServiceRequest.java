@@ -26,6 +26,20 @@ public class ServiceRequest {
 	HttpRequest request;
 	
 	
+	/**
+	 * @return the request
+	 */
+	public HttpRequest getRequest() {
+		return request;
+	}
+
+	/**
+	 * @param request the request to set
+	 */
+	public void setRequest(HttpRequest request) {
+		this.request = request;
+	}
+
 	public ServiceRequest(HttpServletRequest request) {
 		super();
 		this.request = (HttpRequest) request;

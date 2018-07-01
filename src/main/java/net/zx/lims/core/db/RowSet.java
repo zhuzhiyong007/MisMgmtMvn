@@ -120,4 +120,11 @@ public class RowSet {
 			Log.error(e.getMessage());
 		}
 	}
+
+	public String getSafeString(String name) {
+		if(this.getColumn(name)!=null){
+			return this.getColumn(name);
+		}
+		return "";
+	}
 }

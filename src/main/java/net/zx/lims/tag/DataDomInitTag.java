@@ -11,6 +11,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.jdom.Document;
 
 import net.zx.lims.core.db.DataBase;
+import net.zx.lims.core.db.RowSet;
 import net.zx.lims.core.net.ServiceRequest;
 import net.zx.lims.core.net.SessionBroker;
 import net.zx.lims.core.net.SessionInfo;
@@ -30,6 +31,8 @@ public class DataDomInitTag extends TagSupport{
 	}
 	@Override
 	public int doEndTag() throws JspException {
+		ServiceRequest request = (ServiceRequest) pageContext.getRequest().getAttribute("MIS_REQUEST");
+		SessionInfo session = Tools.getSession((HttpServletRequest) request.getRequest());
 		//反射调用init方法获取DataDom
 		String domStr = Tools.getCustomXML();
 		Document doc = Tools.toDocument(domStr);
@@ -37,7 +40,7 @@ public class DataDomInitTag extends TagSupport{
 		//生成DataDom
 		SessionBroker broke = new SessionBroker();
 		try {
-			broke.invokeReflectMethod(dataDom);
+			broke.invokeReflectMethod(dataDom,session);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,10 +55,10 @@ public class DataDomInitTag extends TagSupport{
 	
 	public void getI18NMessage(String program,SessionInfo sessionInfo){
 		String sql = "select msg_id,msg_dec from PGMSGMST WHERE program_id = ? and lang_id = ?";
-		Rowset rs = DataBase.getRs(sql, program,sessionInfo.getCurrentLanguage());
+		RowSet rs = DataBase.getRs(sql,new Object[]{ program,sessionInfo.getCurrentLanguage()});
 		StringBuffer sb = new StringBuffer("<script> var businessMessage={");
 		//构造消息数组方法
-		while(rs.next){
+		while(rs.next()){
 			sb.append(rs.getSafeString("msg_id"));
 			sb.append(":"+rs.getSafeString("msg_dsc")+",");
 		}

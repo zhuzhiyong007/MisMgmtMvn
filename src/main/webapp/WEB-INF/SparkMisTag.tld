@@ -22,6 +22,16 @@
        <name>FieldTag</name>
        <tag-class>net.zx.lims.tag.FieldTag</tag-class>
        <body-content>empty</body-content>
+       <attribute>
+       		<name>name</name>
+       		<required>true</required>
+       		<rtexprvalue>true</rtexprvalue>
+       </attribute>
+       <attribute>
+       		<name>width</name>
+       		<required>true</required>
+       		<rtexprvalue>true</rtexprvalue>
+       </attribute>
     </tag>
     <tag>
        <name>TabsTag</name>
@@ -54,9 +64,19 @@
        <body-content>empty</body-content>
     </tag>
     <tag>
-       <name>FieldLebelTag</name>
-       <tag-class>net.zx.lims.tag.FieldLebelTag</tag-class>
+       <name>FieldLabelTag</name>
+       <tag-class>net.zx.lims.tag.FieldLabelTag</tag-class>
        <body-content>empty</body-content>
+       <attribute>
+       		<name>name</name>
+       		<required>true</required>
+       		<rtexprvalue>true</rtexprvalue>
+       </attribute>
+       <attribute>
+       		<name>width</name>
+       		<required>true</required>
+       		<rtexprvalue>true</rtexprvalue>
+       </attribute>
     </tag>
     <tag>
        <name>RightMenuTag</name>

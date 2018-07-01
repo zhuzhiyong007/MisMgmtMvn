@@ -18,18 +18,12 @@ import javax.servlet.http.HttpSession;
 public class UserLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public UserLogin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -37,10 +31,6 @@ public class UserLogin extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -70,7 +60,7 @@ public class UserLogin extends HttpServlet {
 			//RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
 			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
 			//rd.forward(request, response); // 完成跳转
-			response.sendRedirect("/MisMgmtMvn/xlst/index.jsp");
+			response.sendRedirect("/MisMgmtMvn/xlst/datepicker.jsp");
 		}
 		else {
 		
@@ -82,7 +72,7 @@ public class UserLogin extends HttpServlet {
 			//RequestDispatcher rd = request.getRequestDispatcher("/main.jsp"); // 准备好了跳转操作
 			//RequestDispatcher rd = request.getRequestDispatcher("/xlst/index.jsp"); // 准备好了跳转操作
 			//rd.forward(request, response); // 完成跳转
-			response.sendRedirect("/MisMgmtMvn/xlst/index.jsp");
+			response.sendRedirect("/MisMgmtMvn/xlst/datepicker.jsp");
 		}
 	}
 }
